@@ -1,8 +1,11 @@
 class Zhen < Formula
   desc "Fast native network scanner that says what it could not work out"
   homepage "https://github.com/zhen-swift/zhen-core"
-  url "https://github.com/zhen-swift/zhen-core/archive/refs/tags/0.7.0.tar.gz"
-  sha256 "c5e672c109929eb6678d4ee5a7ab0c53a3abf04a0a1b6e888be42825f5ad04ad"
+  # The git tag, not the tarball: zhen-core's StampCommit plugin reads the commit from
+  # .git, and a tarball build would report "commit unknown".
+  url "https://github.com/zhen-swift/zhen-core.git",
+      tag:      "0.8.0",
+      revision: "f629ba242533be893ca7d49ba4a789d598647d9d"
   license "Apache-2.0"
   head "https://github.com/zhen-swift/zhen-core.git", branch: "main"
 
@@ -31,6 +34,7 @@ class Zhen < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/zhen --version")
+    refute_match "commit unknown", shell_output("#{bin}/zhen --version")
     # The Info.plist is linked into the binary. Without it the Local Network permission
     # attaches to the terminal instead, and every scan reports an empty network.
     assert_match "NSLocalNetworkUsageDescription", shell_output("otool -P #{bin}/zhen")
