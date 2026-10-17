@@ -1,0 +1,12 @@
+# The formula is a few lines; a defect in zhen itself belongs in zhen-core.
+blank_issues_enabled: false
+contact_links:
+  - name: Bug in zhen
+    url: https://github.com/zhen-swift/zhen-core/issues/new/choose
+    about: Anything zhen does once it is installed.
+  - name: Security vulnerability
+    url: https://github.com/zhen-swift/zhen-core/security/advisories/new
+    about: Report privately. Do not open a public issue.
+  - name: Question or idea
+    url: https://github.com/zhen-swift/zhen-core/discussions
+    about: Anything that is not a defect or a specific proposal.

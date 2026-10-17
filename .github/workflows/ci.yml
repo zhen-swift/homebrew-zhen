@@ -1,0 +1,39 @@
+name: CI
+
+# The formula is checked the way a user would meet it: style, audit, a build from source,
+# and the formula's own test. Scripts/check.sh is the whole of it, so a local run and a CI
+# run are the same commands.
+#
+# No bottles. Publishing them means a write token and a workflow that commits bottle
+# hashes back to main, and workflows here never write.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push to a pull request makes the older run worthless. A push to main does not:
+# every commit there keeps its own result, so a red one can be found later.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  formula:
+    name: Formula
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      # Taps this checkout as zhen-swift/zhen, because the repository is named homebrew-zhen.
+      # Homebrew/actions has no release tags, so it is pinned to a commit.
+      - uses: Homebrew/actions/setup-homebrew@4790763c0a3ba4036f72634dc079c4a7dfcd4878
+      - name: Show toolchain
+        run: |
+          brew --version
+          swift --version
+      - name: Check
+        run: Scripts/check.sh

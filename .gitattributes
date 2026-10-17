@@ -1,0 +1,3 @@
+# Line endings: normalise on commit, so a checkout on another platform does not
+# produce a diff of the whole tree.
+* text=auto eol=lf
