@@ -9,13 +9,13 @@ The formula follows zhen-core. A new zhen version reaches Homebrew in this order
 ## Bumping the formula
 
 ```sh
-VERSION=0.8.0
-curl -sSL "https://github.com/zhen-swift/zhen-core/archive/refs/tags/$VERSION.tar.gz" \
-    | shasum -a 256
+VERSION=0.9.0
+git ls-remote https://github.com/zhen-swift/zhen-core.git "refs/tags/$VERSION^{}"
 ```
 
-1. In `Formula/zhen.rb`, set `url` to that tag's tarball and `sha256` to the hash printed
-   above.
+1. In `Formula/zhen.rb`, set `tag:` to `$VERSION` and `revision:` to the commit printed
+   above. It is the `^{}` line: tags are annotated, and `revision:` is the commit, not the
+   tag object.
 2. Add `- zhen $VERSION` under **Unreleased** in `CHANGELOG.md`.
 3. Run the checks:
 
@@ -29,4 +29,4 @@ curl -sSL "https://github.com/zhen-swift/zhen-core/archive/refs/tags/$VERSION.ta
 
 4. Commit, and open the pull request.
 
-Read **Known rough edges** in `Docs/ARCHITECTURE.md` before bumping to 0.8.0.
+Read **Known rough edges** in `Docs/ARCHITECTURE.md` before a bump.

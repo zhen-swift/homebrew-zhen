@@ -6,7 +6,7 @@
 ## Checks
 
 - [ ] `Scripts/check.sh` passes locally
-- [ ] A version bump follows a pushed zhen-core tag, and `sha256` is the hash of that tag's tarball
+- [ ] A version bump follows a pushed zhen-core tag, and `revision:` is the commit that tag points to
 - [ ] `CHANGELOG.md` has a line under **Unreleased**
 
 ## The rules this repository does not bend

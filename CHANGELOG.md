@@ -5,4 +5,6 @@ Each entry names the zhen-core release the formula installs. zhen's own changes 
 
 ## Unreleased
 
+- zhen 0.8.0, built from the git tag rather than the tarball, so `zhen --version` names
+  its commit. `brew test` checks that it does.
 - zhen 0.7.0, built from source. Installs `zhen` and its manual page.

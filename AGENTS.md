@@ -10,9 +10,9 @@ first. Precedence on conflict: **`zhen-agents/`** first, then this file, then `D
 
 ## Rules
 
-- **Tagged releases only.** `url` points to a pushed zhen-core tag's tarball, and `sha256`
-  is that tarball's hash. A formula change is never a branch or an untagged commit. `head`
-  exists for local testing and nothing else.
+- **Tagged releases only.** `url` is zhen-core's git repository, with `tag:` a pushed
+  zhen-core tag and `revision:` the commit that tag points to. A formula change is never a
+  branch or an untagged commit. `head` exists for local testing and nothing else.
 - **Core first.** A version bump here follows the zhen-core release it names. It is one PR
   in this repository, opened after the core tag is pushed.
 - **No `zhen-helper`.** The helper is an `SMAppService` daemon that only the

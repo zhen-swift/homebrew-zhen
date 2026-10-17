@@ -2,7 +2,7 @@
 
 ## What the formula does
 
-`Formula/zhen.rb` downloads the source tarball of one zhen-core tag. It runs
+`Formula/zhen.rb` clones one zhen-core tag, pinned to its commit. It runs
 `swift build --configuration release --product zhen`, then installs:
 
 - `.build/release/zhen` to `bin/`.
@@ -13,7 +13,7 @@ That is the same build and the same two files as zhen-core's `Scripts/install.sh
 ## Why from source
 
 zhen-core publishes no release artifacts. Nothing signs or notarizes the command line,
-and there are no GitHub Releases to download a binary from. Building from source needs
+and its GitHub Releases carry notes, not binaries. Building from source needs
 nothing that doesn't already exist.
 
 The alternative is Homebrew bottles. Publishing them means a workflow with a write token that
@@ -47,10 +47,11 @@ package.
 - **The Local Network prompt can come back after an upgrade.** The binary is ad-hoc signed.
   macOS identifies it by the signature, and every build has a new one. This is unverified
   across a real upgrade, because there has only been one version.
-- **From 0.8.0, `zhen --version` says "commit unknown".** zhen-core's `StampCommit` build
-  plugin, added after 0.7.0, reads the commit from `.git`, and a tarball has none. Two ways
-  out: point the formula at the git tag (`url "….git", tag:, revision:`), or have the plugin
-  accept the commit from the environment. The second is a zhen-core change. Decide when
-  0.8.0 is tagged.
+- **The formula clones, so it can't use the tarball.** zhen-core's `StampCommit` build
+  plugin, added in 0.8.0, reads the commit from `.git`, and a tarball has none: built from
+  one, `zhen --version` says "commit unknown". So from 0.8.0 the formula uses the git tag
+  (`url "….git", tag:, revision:`), and `brew test` fails if the commit is missing. The
+  other way out, the plugin taking the commit from the environment, would have been a
+  zhen-core change after the tag.
 - **`head` builds whatever is on zhen-core `main`.** It is there for testing a release
   before it is tagged. It is not supported.
