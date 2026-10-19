@@ -53,5 +53,9 @@ package.
   (`url "….git", tag:, revision:`), and `brew test` fails if the commit is missing. The
   other way out, the plugin taking the commit from the environment, would have been a
   zhen-core change after the tag.
+- **Xcode 27 builds say "commit unknown".** With Xcode 27, SwiftPM's default build system
+  runs zhen-core's `StampCommit` plugin where it can't read `.git`, so `zhen --version` says
+  "commit unknown" and `brew test` fails (measured 2026-10-18 on 0.8.1). Xcode 26, which
+  CI uses, stamps correctly. The fix belongs in zhen-core's plugin, not here.
 - **`head` builds whatever is on zhen-core `main`.** It is there for testing a release
   before it is tagged. It is not supported.

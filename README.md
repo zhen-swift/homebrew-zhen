@@ -15,7 +15,7 @@ your scan history in `~/Library/Application Support/zhen/`.
 
 ## Requirements
 
-- macOS 26 (Tahoe) or later.
+- macOS 15.6 (Sequoia) or later, on Apple silicon or Intel.
 - Xcode 26. The formula builds zhen from source, and there are no prebuilt bottles.
 
 ## What it installs

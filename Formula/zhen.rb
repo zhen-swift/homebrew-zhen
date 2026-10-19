@@ -4,13 +4,15 @@ class Zhen < Formula
   # The git tag, not the tarball: zhen-core's StampCommit plugin reads the commit from
   # .git, and a tarball build would report "commit unknown".
   url "https://github.com/zhen-swift/zhen-core.git",
-      tag:      "0.8.0",
-      revision: "f629ba242533be893ca7d49ba4a789d598647d9d"
+      tag:      "0.8.1",
+      revision: "b6636fa63d5e906a727139a2547490a30fbf0bda"
   license "Apache-2.0"
   head "https://github.com/zhen-swift/zhen-core.git", branch: "main"
 
+  # zhen runs on macOS 15.6 and later. Homebrew can only name Sequoia, but Xcode 26 itself
+  # needs 15.6, so the Xcode requirement is what holds the floor.
   depends_on xcode: ["26.0", :build]
-  depends_on macos: :tahoe
+  depends_on macos: :sequoia
 
   def install
     # SwiftPM sandboxes its own build and Homebrew already sandboxes this one; the two
