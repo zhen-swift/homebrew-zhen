@@ -4,8 +4,8 @@ class Zhen < Formula
   # The git tag, not the tarball: zhen-core's StampCommit plugin reads the commit from
   # .git, and a tarball build would report "commit unknown".
   url "https://github.com/zhen-swift/zhen-core.git",
-      tag:      "0.8.1",
-      revision: "b6636fa63d5e906a727139a2547490a30fbf0bda"
+      tag:      "0.9.0",
+      revision: "00dffeb06d03fd6e5142f6a9e0f2804b9ec471fe"
   license "Apache-2.0"
   head "https://github.com/zhen-swift/zhen-core.git", branch: "main"
 
