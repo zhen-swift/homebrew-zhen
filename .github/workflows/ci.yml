@@ -30,7 +30,7 @@ jobs:
     steps:
       # Taps this checkout as zhen-swift/zhen, because the repository is named homebrew-zhen.
       # Homebrew/actions has no release tags, so it is pinned to a commit.
-      - uses: Homebrew/actions/setup-homebrew@4790763c0a3ba4036f72634dc079c4a7dfcd4878
+      - uses: Homebrew/actions/setup-homebrew@d482da0e602890d3160aade42e72c8556103bf04
       - name: Show toolchain
         run: |
           brew --version
